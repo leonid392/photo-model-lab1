@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заявка на съёмку — ФотоБиржа</title>
+</head>
+<body>
+    <header>
+        <h1>ФотоБиржа</h1>
+        <p>Биржа для фотографов и моделей</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="catalog.html">Каталог специалистов</a></li>
+            <li><a href="detail.html">Фотограф Алексей Смирнов</a></li>
+            <li><a href="collection.html">Избранные специалисты</a></li>
+            <li><a href="checkout.html">Заявка на съёмку</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <h2>Заявка на съёмку</h2>
+
+            <form action="#" method="post">
+                <p>
+                    <label for="shooting-type">Тип съёмки:</label><br>
+                    <select id="shooting-type" name="shooting_type" required>
+                        <option value="">— Выберите тип съёмки —</option>
+                        <option value="portrait">Портретная</option>
+                        <option value="family">Семейная</option>
+                        <option value="wedding">Свадебная</option>
+                        <option value="reportage">Репортажная</option>
+                        <option value="product">Предметная</option>
+                        <option value="advertising">Рекламная</option>
+                    </select>
+                </p>
+
+                <p>
+                    <label for="shooting-date">Желаемая дата:</label><br>
+                    <input type="date" id="shooting-date"
+                           name="shooting_date" required>
+                </p>
+
+                <p>
+                    <label for="hours">Количество часов:</label><br>
+                    <input type="number" id="hours" name="hours"
+                           min="1" max="12" step="1" value="1" required>
+                </p>
+
+                <p>
+                    <label for="client-name">Ваше имя:</label><br>
+                    <input type="text" id="client-name" name="client_name"
+                           minlength="2" maxlength="100" required>
+                </p>
+
+                <p>
+                    <label for="email">Email для связи:</label><br>
+                    <input type="email" id="email" name="email"
+                           placeholder="you@example.com" required>
+                </p>
+
+                <p>
+                    <label for="phone">Контактный телефон:</label><br>
+                    <input type="tel" id="phone" name="phone"
+                           pattern="\+7[0-9]{10}"
+                           placeholder="+7XXXXXXXXXX"
+                           title="Формат: +7 и 10 цифр без пробелов"
+                           required>
+                </p>
+
+                <fieldset>
+                    <legend>Место съёмки:</legend>
+                    <p>
+                        <input type="radio" id="location-studio"
+                               name="location" value="studio" checked>
+                        <label for="location-studio">В студии</label>
+                    </p>
+                    <p>
+                        <input type="radio" id="location-outdoor"
+                               name="location" value="outdoor">
+                        <label for="location-outdoor">На открытом воздухе</label>
+                    </p>
+                    <p>
+                        <input type="radio" id="location-other"
+                               name="location" value="other">
+                        <label for="location-other">Другое место</label>
+                    </p>
+                </fieldset>
+
+                <p>
+                    <input type="checkbox" id="styling-help"
+                           name="styling_help" value="yes">
+                    <label for="styling-help">
+                        Нужна помощь в подборе образа
+                    </label>
+                </p>
+
+                <p>
+                    <input type="checkbox" id="agree"
+                           name="agree" value="yes" required>
+                    <label for="agree">
+                        Согласен с условиями подачи заявки
+                    </label>
+                </p>
+
+                <p>
+                    <label for="concept">Описание концепции:</label><br>
+                    <textarea id="concept" name="concept"
+                              rows="4" cols="40"
+                              minlength="10" maxlength="2000"
+                              placeholder="Опишите идею, образы и пожелания к съёмке"
+                              required></textarea>
+                </p>
+
+                <p>
+                    <button type="submit">Отправить заявку</button>
+                    <button type="reset">Очистить</button>
+                </p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 ФотоБиржа</p>
+    </footer>
+</body>
+</html>
