@@ -4,99 +4,180 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Фотограф Алексей Смирнов — ФотоБиржа</title>
+    <link rel="stylesheet" href="src/css/style.css">
 </head>
-<body>
-    <header>
-        <h1>ФотоБиржа</h1>
-        <p>Биржа для фотографов и моделей</p>
+<body class="page">
+    <header class="page__header header">
+        <h1 class="header__title">ФотоБиржа</h1>
+        <p class="header__text">Биржа для фотографов и моделей</p>
     </header>
 
-    <nav>
-        <ul>
-            <li><a href="index.html">Главная</a></li>
-            <li><a href="catalog.html">Каталог специалистов</a></li>
-            <li><a href="detail.html">Фотограф Алексей Смирнов</a></li>
-            <li><a href="collection.html">Избранные специалисты</a></li>
-            <li><a href="checkout.html">Заявка на съёмку</a></li>
+    <nav class="page__nav nav" aria-label="Основная навигация">
+        <ul class="nav__list">
+            <li class="nav__item">
+                <a class="nav__link" href="index.html">Главная</a>
+            </li>
+            <li class="nav__item">
+                <a class="nav__link" href="catalog.html">
+                    Каталог специалистов
+                </a>
+            </li>
+            <li class="nav__item">
+                <a class="nav__link nav__link_active"
+                   href="detail.html"
+                   aria-current="page">Фотограф Алексей Смирнов</a>
+            </li>
+            <li class="nav__item">
+                <a class="nav__link" href="collection.html">
+                    Избранные специалисты
+                </a>
+            </li>
+            <li class="nav__item">
+                <a class="nav__link" href="checkout.html">
+                    Заявка на съёмку
+                </a>
+            </li>
         </ul>
     </nav>
 
-    <main>
-        <article>
-            <h2>Фотограф Алексей Смирнов</h2>
+    <main class="page__main">
+        <article class="page__profile profile section">
+            <h2 class="section__title">Фотограф Алексей Смирнов</h2>
 
-            <img src="images/alexey.jpg"
+            <img class="profile__image"
+                 src="images/alexey.jpg"
                  alt="Алексей Смирнов с фотоаппаратом в парке"
-                 width="600" height="400">
+                 width="600"
+                 height="400">
 
-            <section>
-                <h3>Описание</h3>
-                <p>
+            <section class="page__section section">
+                <h3 class="section__title">Описание</h3>
+
+                <p class="section__text">
                     Алексей Смирнов — фотограф из Уфы с опытом работы
                     5 лет. Специализируется на портретной и семейной
                     съёмке. Проводит фотосессии в студии и на открытом
                     воздухе.
                 </p>
-                <p>
+
+                <p class="section__text">
                     Перед съёмкой помогает выбрать место, продумать образы
                     и согласовать концепцию. Во время фотосессии подсказывает
                     позы и помогает участникам чувствовать себя свободно
                     перед камерой.
                 </p>
-                <p>
+
+                <p class="section__text">
                     После съёмки выполняет отбор и обработку фотографий.
                     Продолжительность фотосессии и количество готовых
                     снимков согласуются с заказчиком заранее.
                 </p>
             </section>
 
-            <section>
-                <h3>Характеристики</h3>
-                <ul>
-                    <li>Город: Уфа.</li>
-                    <li>Специализация: портретная и семейная съёмка.</li>
-                    <li>Опыт работы: 5 лет.</li>
-                    <li>Место съёмки: студия или открытая площадка.</li>
-                    <li>Обработка фотографий: цветокоррекция и ретушь.</li>
-                    <li>Формат передачи фотографий: электронный.</li>
+            <section class="page__section section">
+                <h3 class="section__title">Характеристики</h3>
+
+                <ul class="section__list">
+                    <li class="section__item">Город: Уфа.</li>
+                    <li class="section__item">
+                        Специализация: портретная и семейная съёмка.
+                    </li>
+                    <li class="section__item">Опыт работы: 5 лет.</li>
+                    <li class="section__item">
+                        Место съёмки: студия или открытая площадка.
+                    </li>
+                    <li class="section__item">
+                        Обработка фотографий: цветокоррекция и ретушь.
+                    </li>
+                    <li class="section__item">
+                        Формат передачи фотографий: электронный.
+                    </li>
                 </ul>
             </section>
 
-            <section>
-                <h3>Галерея</h3>
+            <section class="page__section section">
+                <h3 class="section__title">Галерея</h3>
 
-                <figure>
-                    <img src="images/portfolio-portrait.jpg"
-                         alt="Портрет женщины в голубой рубашке на фоне парка"
-                         width="400">
-                    <figcaption>Портретная съёмка на улице</figcaption>
+                <figure class="section__photo photo">
+                    <div class="photo__media">
+                        <img class="photo__image"
+                             src="images/portfolio-portrait.jpg"
+                             alt="Портрет женщины в голубой рубашке на фоне парка"
+                             width="400"
+                             loading="lazy">
+
+                        <p class="photo__stats"
+                           aria-label="1240 просмотров, 96 отметок нравится">
+                            Просмотры: 1240 · Лайки: 96
+                        </p>
+                    </div>
+
+                    <figcaption class="photo__caption">
+                        Портретная съёмка на улице
+                    </figcaption>
                 </figure>
 
-                <figure>
-                    <img src="images/portfolio-family.jpg"
-                         alt="Родители с дочерью во время семейной фотосессии в парке"
-                         width="400">
-                    <figcaption>Семейная фотосессия в парке</figcaption>
+                <figure class="section__photo photo">
+                    <div class="photo__media">
+                        <img class="photo__image"
+                             src="images/portfolio-family.jpg"
+                             alt="Родители с дочерью во время семейной фотосессии в парке"
+                             width="400"
+                             loading="lazy">
+
+                        <p class="photo__stats"
+                           aria-label="980 просмотров, 74 отметки нравится">
+                            Просмотры: 980 · Лайки: 74
+                        </p>
+                    </div>
+
+                    <figcaption class="photo__caption">
+                        Семейная фотосессия в парке
+                    </figcaption>
                 </figure>
 
-                <figure>
-                    <img src="images/anna.jpg"
-                         alt="Студийный портрет модели Анны в белой блузке"
-                         width="400">
-                    <figcaption>Портретная съёмка в студии</figcaption>
+                <figure class="section__photo photo">
+                    <div class="photo__media">
+                        <img class="photo__image"
+                             src="images/anna.jpg"
+                             alt="Студийный портрет модели Анны в белой блузке"
+                             width="400"
+                             loading="lazy">
+
+                        <p class="photo__stats"
+                           aria-label="760 просмотров, 61 отметка нравится">
+                            Просмотры: 760 · Лайки: 61
+                        </p>
+                    </div>
+
+                    <figcaption class="photo__caption">
+                        Портретная съёмка в студии
+                    </figcaption>
                 </figure>
             </section>
 
-            <p>
-                <strong>Базовая ставка: 3 000 рублей в час.</strong>
+            <p class="section__text">
+                <strong class="section__accent">
+                    Базовая ставка: 3 000 рублей в час.
+                </strong>
             </p>
-            <p><a href="checkout.html">Оставить заявку на съёмку</a></p>
-            <p><a href="catalog.html">Вернуться в каталог специалистов</a></p>
+
+            <p class="section__text">
+                <a class="section__link" href="checkout.html">
+                    Оставить заявку на съёмку
+                </a>
+            </p>
+
+            <p class="section__text">
+                <a class="section__link" href="catalog.html">
+                    Вернуться в каталог специалистов
+                </a>
+            </p>
         </article>
     </main>
 
-    <footer>
-        <p>&copy; 2026 ФотоБиржа</p>
+    <footer class="page__footer footer">
+        <p class="footer__text">&copy; 2026 ФотоБиржа</p>
     </footer>
 </body>
 </html>

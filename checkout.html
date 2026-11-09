@@ -4,31 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Заявка на съёмку — ФотоБиржа</title>
+    <link rel="stylesheet" href="src/css/style.css">
 </head>
-<body>
-    <header>
-        <h1>ФотоБиржа</h1>
-        <p>Биржа для фотографов и моделей</p>
+<body class="page">
+    <header class="page__header header">
+        <h1 class="header__title">ФотоБиржа</h1>
+        <p class="header__text">Биржа для фотографов и моделей</p>
     </header>
 
-    <nav>
-        <ul>
-            <li><a href="index.html">Главная</a></li>
-            <li><a href="catalog.html">Каталог специалистов</a></li>
-            <li><a href="detail.html">Фотограф Алексей Смирнов</a></li>
-            <li><a href="collection.html">Избранные специалисты</a></li>
-            <li><a href="checkout.html">Заявка на съёмку</a></li>
+    <nav class="page__nav nav" aria-label="Основная навигация">
+        <ul class="nav__list">
+            <li class="nav__item">
+                <a class="nav__link" href="index.html">Главная</a>
+            </li>
+            <li class="nav__item">
+                <a class="nav__link" href="catalog.html">
+                    Каталог специалистов
+                </a>
+            </li>
+            <li class="nav__item">
+                <a class="nav__link" href="detail.html">
+                    Фотограф Алексей Смирнов
+                </a>
+            </li>
+            <li class="nav__item">
+                <a class="nav__link" href="collection.html">
+                    Избранные специалисты
+                </a>
+            </li>
+            <li class="nav__item">
+                <a class="nav__link nav__link_active"
+                   href="checkout.html"
+                   aria-current="page">Заявка на съёмку</a>
+            </li>
         </ul>
     </nav>
 
-    <main>
-        <section>
-            <h2>Заявка на съёмку</h2>
+    <main class="page__main">
+        <section class="page__section section">
+            <h2 class="section__title">Заявка на съёмку</h2>
 
-            <form action="#" method="post">
-                <p>
-                    <label for="shooting-type">Тип съёмки:</label><br>
-                    <select id="shooting-type" name="shooting_type" required>
+            <form class="form" action="#" method="post">
+                <p class="form__field">
+                    <label class="form__label" for="shooting-type">
+                        Тип съёмки:
+                    </label>
+
+                    <select class="form__input"
+                            id="shooting-type"
+                            name="shooting_type"
+                            required>
                         <option value="">— Выберите тип съёмки —</option>
                         <option value="portrait">Портретная</option>
                         <option value="family">Семейная</option>
@@ -39,93 +64,174 @@
                     </select>
                 </p>
 
-                <p>
-                    <label for="shooting-date">Желаемая дата:</label><br>
-                    <input type="date" id="shooting-date"
-                           name="shooting_date" required>
+                <p class="form__field">
+                    <label class="form__label" for="shooting-date">
+                        Желаемая дата:
+                    </label>
+
+                    <input class="form__input"
+                           type="date"
+                           id="shooting-date"
+                           name="shooting_date"
+                           required>
                 </p>
 
-                <p>
-                    <label for="hours">Количество часов:</label><br>
-                    <input type="number" id="hours" name="hours"
-                           min="1" max="12" step="1" value="1" required>
+                <p class="form__field">
+                    <label class="form__label" for="hours">
+                        Количество часов:
+                    </label>
+
+                    <input class="form__input"
+                           type="number"
+                           id="hours"
+                           name="hours"
+                           min="1"
+                           max="12"
+                           step="1"
+                           value="1"
+                           required>
                 </p>
 
-                <p>
-                    <label for="client-name">Ваше имя:</label><br>
-                    <input type="text" id="client-name" name="client_name"
-                           minlength="2" maxlength="100" required>
+                <p class="form__field">
+                    <label class="form__label" for="client-name">
+                        Ваше имя:
+                    </label>
+
+                    <input class="form__input"
+                           type="text"
+                           id="client-name"
+                           name="client_name"
+                           minlength="2"
+                           maxlength="100"
+                           required>
                 </p>
 
-                <p>
-                    <label for="email">Email для связи:</label><br>
-                    <input type="email" id="email" name="email"
-                           placeholder="you@example.com" required>
+                <p class="form__field">
+                    <label class="form__label" for="email">
+                        Email для связи:
+                    </label>
+
+                    <input class="form__input"
+                           type="email"
+                           id="email"
+                           name="email"
+                           placeholder="you@example.com"
+                           required>
                 </p>
 
-                <p>
-                    <label for="phone">Контактный телефон:</label><br>
-                    <input type="tel" id="phone" name="phone"
+                <p class="form__field">
+                    <label class="form__label" for="phone">
+                        Контактный телефон:
+                    </label>
+
+                    <input class="form__input"
+                           type="tel"
+                           id="phone"
+                           name="phone"
                            pattern="\+7[0-9]{10}"
                            placeholder="+7XXXXXXXXXX"
                            title="Формат: +7 и 10 цифр без пробелов"
                            required>
                 </p>
 
-                <fieldset>
-                    <legend>Место съёмки:</legend>
-                    <p>
-                        <input type="radio" id="location-studio"
-                               name="location" value="studio" checked>
-                        <label for="location-studio">В студии</label>
+                <fieldset class="form__group">
+                    <legend class="form__legend">Место съёмки:</legend>
+
+                    <p class="form__field">
+                        <input class="form__choice"
+                               type="radio"
+                               id="location-studio"
+                               name="location"
+                               value="studio"
+                               checked>
+
+                        <label class="form__choice-label" for="location-studio">
+                            В студии
+                        </label>
                     </p>
-                    <p>
-                        <input type="radio" id="location-outdoor"
-                               name="location" value="outdoor">
-                        <label for="location-outdoor">На открытом воздухе</label>
+
+                    <p class="form__field">
+                        <input class="form__choice"
+                               type="radio"
+                               id="location-outdoor"
+                               name="location"
+                               value="outdoor">
+
+                        <label class="form__choice-label" for="location-outdoor">
+                            На открытом воздухе
+                        </label>
                     </p>
-                    <p>
-                        <input type="radio" id="location-other"
-                               name="location" value="other">
-                        <label for="location-other">Другое место</label>
+
+                    <p class="form__field">
+                        <input class="form__choice"
+                               type="radio"
+                               id="location-other"
+                               name="location"
+                               value="other">
+
+                        <label class="form__choice-label" for="location-other">
+                            Другое место
+                        </label>
                     </p>
                 </fieldset>
 
-                <p>
-                    <input type="checkbox" id="styling-help"
-                           name="styling_help" value="yes">
-                    <label for="styling-help">
+                <p class="form__field">
+                    <input class="form__choice"
+                           type="checkbox"
+                           id="styling-help"
+                           name="styling_help"
+                           value="yes">
+
+                    <label class="form__choice-label" for="styling-help">
                         Нужна помощь в подборе образа
                     </label>
                 </p>
 
-                <p>
-                    <input type="checkbox" id="agree"
-                           name="agree" value="yes" required>
-                    <label for="agree">
+                <p class="form__field">
+                    <input class="form__choice"
+                           type="checkbox"
+                           id="agree"
+                           name="agree"
+                           value="yes"
+                           required>
+
+                    <label class="form__choice-label" for="agree">
                         Согласен с условиями подачи заявки
                     </label>
                 </p>
 
-                <p>
-                    <label for="concept">Описание концепции:</label><br>
-                    <textarea id="concept" name="concept"
-                              rows="4" cols="40"
-                              minlength="10" maxlength="2000"
+                <p class="form__field">
+                    <label class="form__label" for="concept">
+                        Описание концепции:
+                    </label>
+
+                    <textarea class="form__input form__input_area"
+                              id="concept"
+                              name="concept"
+                              rows="4"
+                              cols="40"
+                              minlength="10"
+                              maxlength="2000"
                               placeholder="Опишите идею, образы и пожелания к съёмке"
                               required></textarea>
                 </p>
 
-                <p>
-                    <button type="submit">Отправить заявку</button>
-                    <button type="reset">Очистить</button>
+                <p class="form__field">
+                    <button class="form__button button" type="submit">
+                        Отправить заявку
+                    </button>
+
+                    <button class="form__button button button_secondary"
+                            type="reset">
+                        Очистить
+                    </button>
                 </p>
             </form>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 ФотоБиржа</p>
+    <footer class="page__footer footer">
+        <p class="footer__text">&copy; 2026 ФотоБиржа</p>
     </footer>
 </body>
 </html>

@@ -1,0 +1,522 @@
+@use "variables" as v;
+@use "reset";
+
+// Оформление клавиатурного фокуса.
+@mixin focus-ring {
+  outline: 3px solid v.$color-primary;
+  outline-offset: 3px;
+}
+
+// Страница и внешняя геометрия блоков.
+.page {
+  font-family: v.$font-main;
+  font-size: v.$font-size;
+  line-height: v.$line-height;
+  color: v.$color-text;
+  background-color: v.$color-bg;
+
+  &__header,
+  &__nav,
+  &__main,
+  &__footer {
+    width: calc(100% - 32px);
+    max-width: v.$container-width;
+    margin: 0 auto;
+  }
+
+  &__header {
+    margin-top: v.$space-l;
+  }
+
+  &__nav {
+    margin-top: v.$space-m;
+    margin-bottom: v.$space-l;
+  }
+
+  &__section,
+  &__card,
+  &__profile {
+    margin: 0 0 v.$space-l;
+  }
+
+  &__footer {
+    margin-top: v.$space-xl;
+    margin-bottom: v.$space-l;
+  }
+
+  // Вариант 16: липкая панель фильтров.
+  &__filters {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    margin: 0 0 v.$space-l;
+  }
+}
+
+// Шапка.
+.header {
+  padding: v.$space-xl;
+  color: v.$color-surface;
+  background-color: v.$color-primary-dark;
+  border-radius: v.$radius;
+
+  &__title {
+    margin: 0 0 v.$space-s;
+    font-size: 36px;
+    line-height: 1.2;
+  }
+
+  &__text {
+    margin: 0;
+    color: #dce8fb;
+  }
+}
+
+// Навигация.
+.nav {
+  padding: v.$space-s;
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius;
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__item {
+    display: inline-block;
+    margin: 4px;
+  }
+
+  &__link {
+    display: inline-block;
+    padding: 8px 12px;
+    color: v.$color-text;
+    text-decoration: none;
+    border-radius: 6px;
+
+    transition:
+      color v.$transition,
+      background-color v.$transition;
+
+    &:hover {
+      color: v.$color-primary;
+      background-color: v.$color-soft;
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+
+    &_active {
+      color: v.$color-surface;
+      background-color: v.$color-primary;
+    }
+  }
+}
+
+// Разделы страниц.
+.section {
+  padding: v.$space-l;
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius;
+
+  &_note {
+    background-color: v.$color-soft;
+  }
+
+  &__title {
+    margin: 0 0 v.$space-m;
+    font-size: 24px;
+    line-height: 1.3;
+  }
+
+  &__text {
+    margin: 0 0 v.$space-m;
+  }
+
+  &__list {
+    margin: 0 0 v.$space-m;
+    padding-left: v.$space-l;
+  }
+
+  &__item {
+    margin-bottom: v.$space-s;
+  }
+
+  &__accent {
+    color: v.$color-primary-dark;
+  }
+
+  &__link {
+    color: v.$color-primary;
+    text-underline-offset: 3px;
+    overflow-wrap: anywhere;
+    transition: color v.$transition;
+
+    &:hover {
+      color: v.$color-primary-dark;
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+
+  &__table-wrap {
+    overflow-x: auto;
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+
+  &__photo {
+    margin: 0 0 v.$space-l;
+  }
+}
+
+// Карточка специалиста.
+.card {
+  padding: v.$space-l;
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius;
+
+  transition:
+    box-shadow v.$transition,
+    transform v.$transition;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px #202b3c18;
+  }
+
+  &__title {
+    margin: 0 0 v.$space-m;
+    font-size: 22px;
+    line-height: 1.3;
+  }
+
+  &__image {
+    display: block;
+    width: 300px;
+    max-width: 100%;
+    height: 200px;
+    margin: 0 0 v.$space-m;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  &__text,
+  &__list {
+    margin: 0 0 v.$space-m;
+  }
+
+  &__list {
+    padding-left: v.$space-l;
+  }
+
+  &__item {
+    margin-bottom: 4px;
+  }
+
+  &__link {
+    color: v.$color-primary;
+    text-underline-offset: 3px;
+    transition: color v.$transition;
+
+    &:hover {
+      color: v.$color-primary-dark;
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+}
+
+// Подробная страница специалиста.
+.profile {
+  padding: v.$space-l;
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius;
+
+  &__image {
+    display: block;
+    width: 600px;
+    max-width: 100%;
+    height: auto;
+    margin: 0 0 v.$space-l;
+    border-radius: v.$radius;
+  }
+}
+
+// Фотографии портфолио.
+.photo {
+  width: 100%;
+  max-width: 600px;
+
+  // Система координат для плашки статистики.
+  &__media {
+    position: relative;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 340px;
+    object-fit: cover;
+    border-radius: v.$radius;
+  }
+
+  // Вариант 16: статистика поверх изображения.
+  &__stats {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+
+    margin: 0;
+    padding: 10px 12px;
+
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+
+    color: v.$color-surface;
+    background-color: rgba(16, 28, 48, 0.85);
+    border-radius: 8px;
+  }
+
+  &__caption {
+    margin-top: v.$space-s;
+    color: v.$color-muted;
+  }
+}
+
+// Кнопки.
+.button {
+  display: inline-block;
+  padding: 10px 18px;
+
+  font: inherit;
+  font-weight: 700;
+
+  color: v.$color-surface;
+  background-color: v.$color-primary;
+
+  border: 1px solid v.$color-primary;
+  border-radius: 8px;
+  cursor: pointer;
+
+  transition:
+    background-color v.$transition,
+    transform v.$transition;
+
+  &:hover {
+    background-color: v.$color-primary-dark;
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  &_secondary {
+    color: v.$color-primary-dark;
+    background-color: v.$color-soft;
+
+    &:hover {
+      background-color: #d3e1f7;
+    }
+  }
+}
+
+// Панель фильтров.
+.filters {
+  padding: v.$space-m;
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-primary;
+  border-radius: v.$radius;
+  box-shadow: 0 6px 18px #202b3c12;
+
+  &__title {
+    margin: 0 0 v.$space-s;
+    font-size: 18px;
+  }
+
+  &__field {
+    display: inline-block;
+    width: 30%;
+    max-width: 260px;
+    margin-right: v.$space-s;
+    vertical-align: bottom;
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+
+  &__input {
+    width: 100%;
+    min-height: 46px;
+    padding: 8px;
+
+    font: inherit;
+
+    color: v.$color-text;
+    background-color: v.$color-surface;
+
+    border: 1px solid v.$color-border;
+    border-radius: 8px;
+
+    transition: border-color v.$transition;
+
+    &:hover {
+      border-color: v.$color-primary;
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+
+  &__button {
+    margin: 8px 0 0;
+    vertical-align: bottom;
+  }
+
+  @media (max-width: 600px) {
+    &__field {
+      width: 34%;
+    }
+  }
+}
+
+// Форма заявки.
+.form {
+  &__field {
+    margin: 0 0 v.$space-l;
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: v.$space-s;
+    font-weight: 700;
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    max-width: 620px;
+    min-height: 46px;
+    padding: 10px 12px;
+
+    font: inherit;
+
+    color: v.$color-text;
+    background-color: v.$color-surface;
+
+    border: 1px solid v.$color-border;
+    border-radius: 8px;
+
+    transition:
+      border-color v.$transition,
+      background-color v.$transition;
+
+    &:hover {
+      border-color: v.$color-primary;
+      background-color: #fafcff;
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+
+    &_area {
+      min-height: 140px;
+      resize: vertical;
+    }
+  }
+
+  &__group {
+    margin: 0 0 v.$space-l;
+    padding: v.$space-m;
+    border: 1px solid v.$color-border;
+    border-radius: 8px;
+  }
+
+  &__legend {
+    padding: 0 v.$space-s;
+    font-weight: 700;
+  }
+
+  &__choice {
+    margin-right: v.$space-s;
+    accent-color: v.$color-primary;
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__choice-label {
+    cursor: pointer;
+  }
+
+  &__button {
+    margin: 0 v.$space-s v.$space-s 0;
+  }
+}
+
+// Таблица избранных специалистов.
+.table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+
+  &__caption {
+    margin-bottom: v.$space-m;
+    text-align: left;
+    font-weight: 700;
+  }
+
+  &__cell {
+    padding: 12px;
+    text-align: left;
+    vertical-align: top;
+    border: 1px solid v.$color-border;
+  }
+
+  &__cell_heading {
+    font-weight: 700;
+    background-color: v.$color-soft;
+  }
+
+  &__foot {
+    background-color: v.$color-soft;
+  }
+}
+
+// Подвал.
+.footer {
+  padding: v.$space-l;
+  text-align: center;
+  color: v.$color-muted;
+
+  &__text {
+    margin: 0;
+  }
+}

@@ -4,115 +4,231 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Каталог специалистов — ФотоБиржа</title>
+    <link rel="stylesheet" href="src/css/style.css">
 </head>
-<body>
-    <header>
-        <h1>ФотоБиржа</h1>
-        <p>Биржа для фотографов и моделей</p>
+<body class="page">
+    <header class="page__header header">
+        <h1 class="header__title">ФотоБиржа</h1>
+        <p class="header__text">Биржа для фотографов и моделей</p>
     </header>
 
-    <nav>
-        <ul>
-            <li><a href="index.html">Главная</a></li>
-            <li><a href="catalog.html">Каталог специалистов</a></li>
-            <li><a href="detail.html">Фотограф Алексей Смирнов</a></li>
-            <li><a href="collection.html">Избранные специалисты</a></li>
-            <li><a href="checkout.html">Заявка на съёмку</a></li>
+    <nav class="page__nav nav" aria-label="Основная навигация">
+        <ul class="nav__list">
+            <li class="nav__item">
+                <a class="nav__link" href="index.html">Главная</a>
+            </li>
+            <li class="nav__item">
+                <a class="nav__link nav__link_active"
+                   href="catalog.html"
+                   aria-current="page">Каталог специалистов</a>
+            </li>
+            <li class="nav__item">
+                <a class="nav__link" href="detail.html">
+                    Фотограф Алексей Смирнов
+                </a>
+            </li>
+            <li class="nav__item">
+                <a class="nav__link" href="collection.html">
+                    Избранные специалисты
+                </a>
+            </li>
+            <li class="nav__item">
+                <a class="nav__link" href="checkout.html">
+                    Заявка на съёмку
+                </a>
+            </li>
         </ul>
     </nav>
 
-    <main>
-        <section>
-            <h2>Каталог специалистов</h2>
-            <p>
+    <main class="page__main">
+        <section class="page__section section">
+            <h2 class="section__title">Каталог специалистов</h2>
+
+            <p class="section__text">
                 Познакомьтесь с фотографами и моделями, их специализацией
                 и стоимостью работы. Выберите специалиста для своей съёмки.
             </p>
         </section>
 
-        <section>
-            <h2>Фотографы</h2>
+        <form class="page__filters filters" aria-label="Фильтры специалистов">
+            <h2 class="filters__title">Найти специалиста</h2>
 
-            <article id="alexey-smirnov">
-                <h3>Алексей Смирнов</h3>
-                <img src="images/alexey.jpg"
+            <div class="filters__field">
+                <label class="filters__label" for="filter-city">
+                    Город
+                </label>
+
+                <select class="filters__input" id="filter-city" name="city">
+                    <option value="">Все города</option>
+                    <option value="ufa">Уфа</option>
+                    <option value="kazan">Казань</option>
+                </select>
+            </div>
+
+            <div class="filters__field">
+                <label class="filters__label" for="filter-genre">
+                    Жанр съёмки
+                </label>
+
+                <select class="filters__input" id="filter-genre" name="genre">
+                    <option value="">Все жанры</option>
+                    <option value="portrait">Портретная</option>
+                    <option value="family">Семейная</option>
+                    <option value="wedding">Свадебная</option>
+                    <option value="reportage">Репортажная</option>
+                    <option value="product">Предметная</option>
+                    <option value="advertising">Рекламная</option>
+                </select>
+            </div>
+
+            <button class="filters__button button button_secondary" type="reset">
+                Сбросить
+            </button>
+        </form>
+
+        <section class="page__section section">
+            <h2 class="section__title">Фотографы</h2>
+
+            <article class="page__card card" id="alexey-smirnov">
+                <h3 class="card__title">Алексей Смирнов</h3>
+
+                <img class="card__image"
+                     src="images/alexey.jpg"
                      alt="Фотограф Алексей Смирнов с фотоаппаратом в парке"
-                     width="300" height="200">
-                <p>
+                     width="300"
+                     height="200"
+                     loading="lazy">
+
+                <p class="card__text">
                     Проводит портретные и семейные фотосессии.
                     Помогает подобрать место съёмки и подготовиться к ней.
                 </p>
-                <ul>
-                    <li>Специализация: портретная и семейная съёмка.</li>
-                    <li>Город: Уфа.</li>
-                    <li>Опыт работы: 5 лет.</li>
-                    <li>Базовая ставка: 3 000 рублей в час.</li>
+
+                <ul class="card__list">
+                    <li class="card__item">
+                        Специализация: портретная и семейная съёмка.
+                    </li>
+                    <li class="card__item">Город: Уфа.</li>
+                    <li class="card__item">Опыт работы: 5 лет.</li>
+                    <li class="card__item">
+                        Базовая ставка: 3 000 рублей в час.
+                    </li>
                 </ul>
-                <p><a href="detail.html">Подробнее о фотографе</a></p>
+
+                <p class="card__text">
+                    <a class="card__link" href="detail.html">
+                        Подробнее о фотографе
+                    </a>
+                </p>
             </article>
 
-            <article id="maria-volkova">
-                <h3>Мария Волкова</h3>
-                <img src="images/maria.jpg"
+            <article class="page__card card" id="maria-volkova">
+                <h3 class="card__title">Мария Волкова</h3>
+
+                <img class="card__image"
+                     src="images/maria.jpg"
                      alt="Фотограф Мария Волкова с фотоаппаратом в саду"
-                     width="300" height="200">
-                <p>
+                     width="300"
+                     height="200"
+                     loading="lazy">
+
+                <p class="card__text">
                     Снимает свадьбы, праздники и другие мероприятия.
                     Создаёт постановочные и репортажные фотографии.
                 </p>
-                <ul>
-                    <li>Специализация: свадебная и репортажная съёмка.</li>
-                    <li>Город: Казань.</li>
-                    <li>Опыт работы: 7 лет.</li>
-                    <li>Базовая ставка: 4 000 рублей в час.</li>
+
+                <ul class="card__list">
+                    <li class="card__item">
+                        Специализация: свадебная и репортажная съёмка.
+                    </li>
+                    <li class="card__item">Город: Казань.</li>
+                    <li class="card__item">Опыт работы: 7 лет.</li>
+                    <li class="card__item">
+                        Базовая ставка: 4 000 рублей в час.
+                    </li>
                 </ul>
-                <p><a href="checkout.html">Оставить заявку на съёмку</a></p>
+
+                <p class="card__text">
+                    <a class="card__link" href="checkout.html">
+                        Оставить заявку на съёмку
+                    </a>
+                </p>
             </article>
 
-            <article id="dmitry-orlov">
-                <h3>Дмитрий Орлов</h3>
-                <img src="images/dmitry.jpg"
+            <article class="page__card card" id="dmitry-orlov">
+                <h3 class="card__title">Дмитрий Орлов</h3>
+
+                <img class="card__image"
+                     src="images/dmitry.jpg"
                      alt="Фотограф Дмитрий Орлов с фотоаппаратом в студии"
-                     width="300" height="200">
-                <p>
+                     width="300"
+                     height="200"
+                     loading="lazy">
+
+                <p class="card__text">
                     Создаёт фотографии товаров для каталогов и рекламы.
                     Работает с освещением и предметными композициями.
                 </p>
-                <ul>
-                    <li>Специализация: предметная и рекламная съёмка.</li>
-                    <li>Город: Уфа.</li>
-                    <li>Опыт работы: 4 года.</li>
-                    <li>Базовая ставка: 2 500 рублей в час.</li>
+
+                <ul class="card__list">
+                    <li class="card__item">
+                        Специализация: предметная и рекламная съёмка.
+                    </li>
+                    <li class="card__item">Город: Уфа.</li>
+                    <li class="card__item">Опыт работы: 4 года.</li>
+                    <li class="card__item">
+                        Базовая ставка: 2 500 рублей в час.
+                    </li>
                 </ul>
-                <p><a href="checkout.html">Оставить заявку на съёмку</a></p>
+
+                <p class="card__text">
+                    <a class="card__link" href="checkout.html">
+                        Оставить заявку на съёмку
+                    </a>
+                </p>
             </article>
         </section>
 
-        <section>
-            <h2>Модели</h2>
+        <section class="page__section section">
+            <h2 class="section__title">Модели</h2>
 
-            <article id="anna-sokolova">
-                <h3>Анна Соколова</h3>
-                <img src="images/anna.jpg"
+            <article class="page__card card" id="anna-sokolova">
+                <h3 class="card__title">Анна Соколова</h3>
+
+                <img class="card__image"
+                     src="images/anna.jpg"
                      alt="Модель Анна Соколова в белой блузке в студии"
-                     width="300" height="200">
-                <p>
+                     width="300"
+                     height="200"
+                     loading="lazy">
+
+                <p class="card__text">
                     Участвует в портретных и рекламных фотосессиях,
                     съёмках одежды и творческих проектах.
                 </p>
-                <ul>
-                    <li>Специализация: портретная и рекламная съёмка.</li>
-                    <li>Город: Уфа.</li>
-                    <li>Опыт работы: 3 года.</li>
-                    <li>Базовая ставка: 2 000 рублей в час.</li>
+
+                <ul class="card__list">
+                    <li class="card__item">
+                        Специализация: портретная и рекламная съёмка.
+                    </li>
+                    <li class="card__item">Город: Уфа.</li>
+                    <li class="card__item">Опыт работы: 3 года.</li>
+                    <li class="card__item">
+                        Базовая ставка: 2 000 рублей в час.
+                    </li>
                 </ul>
-                <p><a href="checkout.html">Оставить заявку на съёмку</a></p>
+
+                <p class="card__text">
+                    <a class="card__link" href="checkout.html">
+                        Оставить заявку на съёмку
+                    </a>
+                </p>
             </article>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 ФотоБиржа</p>
+    <footer class="page__footer footer">
+        <p class="footer__text">&copy; 2026 ФотоБиржа</p>
     </footer>
 </body>
 </html>
