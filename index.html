@@ -6,8 +6,8 @@
     <title>ФотоБиржа — биржа для фотографов и моделей</title>
     <link rel="stylesheet" href="src/css/style.css">
 </head>
-<body class="page">
-    <header class="page__header header">
+<body class="page page_with-aside">
+    <header class="page__header header" id="top">
         <h1 class="header__title">ФотоБиржа</h1>
         <p class="header__text">Биржа для фотографов и моделей</p>
     </header>
@@ -74,50 +74,52 @@
         <section class="page__section section">
             <h2 class="section__title">Наши специалисты</h2>
 
-            <article class="page__card card">
-                <h3 class="card__title">Алексей Смирнов — фотограф</h3>
+            <div class="cards">
+                <article class="page__card card">
+                    <h3 class="card__title">Алексей Смирнов — фотограф</h3>
 
-                <p class="card__text">
-                    Портретная и семейная съёмка в Уфе.
-                    Базовая ставка — 3 000 рублей в час.
-                </p>
+                    <p class="card__text">
+                        Портретная и семейная съёмка в Уфе.
+                        Базовая ставка — 3 000 рублей в час.
+                    </p>
 
-                <p class="card__text">
-                    <a class="card__link" href="detail.html">
-                        Подробнее о фотографе
-                    </a>
-                </p>
-            </article>
+                    <p class="card__text">
+                        <a class="card__link" href="detail.html">
+                            Подробнее о фотографе
+                        </a>
+                    </p>
+                </article>
 
-            <article class="page__card card">
-                <h3 class="card__title">Мария Волкова — фотограф</h3>
+                <article class="page__card card">
+                    <h3 class="card__title">Мария Волкова — фотограф</h3>
 
-                <p class="card__text">
-                    Свадебная и репортажная съёмка в Казани.
-                    Базовая ставка — 4 000 рублей в час.
-                </p>
+                    <p class="card__text">
+                        Свадебная и репортажная съёмка в Казани.
+                        Базовая ставка — 4 000 рублей в час.
+                    </p>
 
-                <p class="card__text">
-                    <a class="card__link" href="catalog.html#maria-volkova">
-                        Смотреть в каталоге
-                    </a>
-                </p>
-            </article>
+                    <p class="card__text">
+                        <a class="card__link" href="catalog.html#maria-volkova">
+                            Смотреть в каталоге
+                        </a>
+                    </p>
+                </article>
 
-            <article class="page__card card">
-                <h3 class="card__title">Анна Соколова — модель</h3>
+                <article class="page__card card">
+                    <h3 class="card__title">Анна Соколова — модель</h3>
 
-                <p class="card__text">
-                    Участие в портретных и рекламных съёмках в Уфе.
-                    Базовая ставка — 2 000 рублей в час.
-                </p>
+                    <p class="card__text">
+                        Участие в портретных и рекламных съёмках в Уфе.
+                        Базовая ставка — 2 000 рублей в час.
+                    </p>
 
-                <p class="card__text">
-                    <a class="card__link" href="catalog.html#anna-sokolova">
-                        Смотреть в каталоге
-                    </a>
-                </p>
-            </article>
+                    <p class="card__text">
+                        <a class="card__link" href="catalog.html#anna-sokolova">
+                            Смотреть в каталоге
+                        </a>
+                    </p>
+                </article>
+            </div>
         </section>
 
         <section class="page__section section">
@@ -147,20 +149,22 @@
                 </a>
             </p>
         </section>
-
-        <aside class="page__section section section_note">
-            <h2 class="section__title">Совет перед фотосессией</h2>
-
-            <p class="section__text">
-                Заранее продумайте место съёмки, образы и желаемый результат.
-                Укажите эти пожелания в описании концепции, чтобы специалист
-                мог подготовиться к работе.
-            </p>
-        </aside>
     </main>
+
+    <aside class="page__aside section section_note">
+        <h2 class="section__title">Совет перед фотосессией</h2>
+
+        <p class="section__text">
+            Заранее продумайте место съёмки, образы и желаемый результат.
+            Укажите эти пожелания в описании концепции, чтобы специалист
+            мог подготовиться к работе.
+        </p>
+    </aside>
 
     <footer class="page__footer footer">
         <p class="footer__text">&copy; 2026 ФотоБиржа</p>
+
+        <a class="footer__up" href="#top" aria-label="Наверх страницы">↑</a>
     </footer>
 </body>
 </html>

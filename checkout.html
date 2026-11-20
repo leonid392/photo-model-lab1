@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="src/css/style.css">
 </head>
 <body class="page">
-    <header class="page__header header">
+    <header class="page__header header" id="top">
         <h1 class="header__title">ФотоБиржа</h1>
         <p class="header__text">Биржа для фотографов и моделей</p>
     </header>
@@ -137,7 +137,7 @@
                 <fieldset class="form__group">
                     <legend class="form__legend">Место съёмки:</legend>
 
-                    <p class="form__field">
+                    <p class="form__field form__field_choice">
                         <input class="form__choice"
                                type="radio"
                                id="location-studio"
@@ -150,7 +150,7 @@
                         </label>
                     </p>
 
-                    <p class="form__field">
+                    <p class="form__field form__field_choice">
                         <input class="form__choice"
                                type="radio"
                                id="location-outdoor"
@@ -162,7 +162,7 @@
                         </label>
                     </p>
 
-                    <p class="form__field">
+                    <p class="form__field form__field_choice">
                         <input class="form__choice"
                                type="radio"
                                id="location-other"
@@ -175,7 +175,7 @@
                     </p>
                 </fieldset>
 
-                <p class="form__field">
+                <p class="form__field form__field_choice">
                     <input class="form__choice"
                            type="checkbox"
                            id="styling-help"
@@ -187,7 +187,7 @@
                     </label>
                 </p>
 
-                <p class="form__field">
+                <p class="form__field form__field_choice">
                     <input class="form__choice"
                            type="checkbox"
                            id="agree"
@@ -216,7 +216,7 @@
                               required></textarea>
                 </p>
 
-                <p class="form__field">
+                <p class="form__field form__field_buttons">
                     <button class="form__button button" type="submit">
                         Отправить заявку
                     </button>
@@ -232,6 +232,8 @@
 
     <footer class="page__footer footer">
         <p class="footer__text">&copy; 2026 ФотоБиржа</p>
+
+        <a class="footer__up" href="#top" aria-label="Наверх страницы">↑</a>
     </footer>
 </body>
 </html>
