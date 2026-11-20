@@ -3,520 +3,667 @@
 
 // Оформление клавиатурного фокуса.
 @mixin focus-ring {
-  outline: 3px solid v.$color-primary;
-  outline-offset: 3px;
+    outline: 3px solid v.$color-primary;
+    outline-offset: 3px;
 }
 
-// Страница и внешняя геометрия блоков.
+// Макросетка страницы (Grid). Mobile First: сначала одна колонка.
 .page {
-  font-family: v.$font-main;
-  font-size: v.$font-size;
-  line-height: v.$line-height;
-  color: v.$color-text;
-  background-color: v.$color-bg;
-
-  &__header,
-  &__nav,
-  &__main,
-  &__footer {
-    width: calc(100% - 32px);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+        "header"
+        "nav"
+        "main"
+        "footer";
+    gap: v.$space-l;
     max-width: v.$container-width;
     margin: 0 auto;
-  }
-
-  &__header {
-    margin-top: v.$space-l;
-  }
-
-  &__nav {
-    margin-top: v.$space-m;
-    margin-bottom: v.$space-l;
-  }
-
-  &__section,
-  &__card,
-  &__profile {
-    margin: 0 0 v.$space-l;
-  }
-
-  &__footer {
-    margin-top: v.$space-xl;
-    margin-bottom: v.$space-l;
-  }
-
-  // Вариант 16: липкая панель фильтров.
-  &__filters {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    margin: 0 0 v.$space-l;
-  }
-}
-
-// Шапка.
-.header {
-  padding: v.$space-xl;
-  color: v.$color-surface;
-  background-color: v.$color-primary-dark;
-  border-radius: v.$radius;
-
-  &__title {
-    margin: 0 0 v.$space-s;
-    font-size: 36px;
-    line-height: 1.2;
-  }
-
-  &__text {
-    margin: 0;
-    color: #dce8fb;
-  }
-}
-
-// Навигация.
-.nav {
-  padding: v.$space-s;
-  background-color: v.$color-surface;
-  border: 1px solid v.$color-border;
-  border-radius: v.$radius;
-
-  &__list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  &__item {
-    display: inline-block;
-    margin: 4px;
-  }
-
-  &__link {
-    display: inline-block;
-    padding: 8px 12px;
+    padding: v.$space-m;
+    font-family: v.$font-main;
+    font-size: v.$font-size;
+    line-height: v.$line-height;
     color: v.$color-text;
-    text-decoration: none;
-    border-radius: 6px;
+    background-color: v.$color-bg;
 
-    transition:
-      color v.$transition,
-      background-color v.$transition;
-
-    &:hover {
-      color: v.$color-primary;
-      background-color: v.$color-soft;
+    // Страница с боковой панелью: на телефоне панель под контентом.
+    &_with-aside {
+        grid-template-areas:
+            "header"
+            "nav"
+            "main"
+            "aside"
+            "footer";
     }
 
-    &:focus-visible {
-      @include focus-ring;
+    &__header {
+        grid-area: header;
     }
 
-    &_active {
-      color: v.$color-surface;
-      background-color: v.$color-primary;
+    &__nav {
+        grid-area: nav;
     }
-  }
+
+    &__main {
+        grid-area: main;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: v.$space-l;
+        align-content: start;
+    }
+
+    &__aside {
+        grid-area: aside;
+        align-self: start;
+    }
+
+    &__footer {
+        grid-area: footer;
+    }
+
+    // ЛР2: липкая панель фильтров.
+    &__filters {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    @media (min-width: v.$bp-tablet) {
+        padding: v.$space-l;
+    }
+
+    // На мониторе боковая панель встаёт справа от контента.
+    @media (min-width: v.$bp-desktop) {
+        &_with-aside {
+            grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
+            grid-template-areas:
+                "header header"
+                "nav nav"
+                "main aside"
+                "footer footer";
+        }
+    }
+}
+
+// Шапка (Flexbox).
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: v.$space-s;
+    padding: v.$space-l;
+    color: v.$color-surface;
+    background-color: v.$color-primary-dark;
+    border-radius: v.$radius;
+
+    &__title {
+        margin: 0;
+        font-size: 28px;
+        line-height: 1.2;
+    }
+
+    &__text {
+        margin: 0;
+        color: #dce8fb;
+    }
+
+    @media (min-width: v.$bp-tablet) {
+        flex-direction: row;
+        align-items: baseline;
+        justify-content: space-between;
+        padding: v.$space-xl;
+
+        &__title {
+            font-size: 36px;
+        }
+    }
+}
+
+// Навигация (Flexbox): столбиком на телефоне, в строку с 768px.
+.nav {
+    padding: v.$space-s;
+    background-color: v.$color-surface;
+    border: 1px solid v.$color-border;
+    border-radius: v.$radius;
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__link {
+        display: block;
+        padding: 8px 12px;
+        color: v.$color-text;
+        text-decoration: none;
+        border-radius: 6px;
+        transition:
+            color v.$transition,
+            background-color v.$transition;
+
+        &:hover {
+            color: v.$color-primary;
+            background-color: v.$color-soft;
+        }
+
+        &:focus-visible {
+            @include focus-ring;
+        }
+
+        &_active {
+            color: v.$color-surface;
+            background-color: v.$color-primary;
+        }
+    }
+
+    @media (min-width: v.$bp-tablet) {
+        &__list {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+    }
 }
 
 // Разделы страниц.
 .section {
-  padding: v.$space-l;
-  background-color: v.$color-surface;
-  border: 1px solid v.$color-border;
-  border-radius: v.$radius;
-
-  &_note {
-    background-color: v.$color-soft;
-  }
-
-  &__title {
-    margin: 0 0 v.$space-m;
-    font-size: 24px;
-    line-height: 1.3;
-  }
-
-  &__text {
-    margin: 0 0 v.$space-m;
-  }
-
-  &__list {
-    margin: 0 0 v.$space-m;
-    padding-left: v.$space-l;
-  }
-
-  &__item {
-    margin-bottom: v.$space-s;
-  }
-
-  &__accent {
-    color: v.$color-primary-dark;
-  }
-
-  &__link {
-    color: v.$color-primary;
-    text-underline-offset: 3px;
-    overflow-wrap: anywhere;
-    transition: color v.$transition;
-
-    &:hover {
-      color: v.$color-primary-dark;
-    }
-
-    &:focus-visible {
-      @include focus-ring;
-    }
-  }
-
-  &__table-wrap {
-    overflow-x: auto;
-
-    &:focus-visible {
-      @include focus-ring;
-    }
-  }
-
-  &__photo {
-    margin: 0 0 v.$space-l;
-  }
-}
-
-// Карточка специалиста.
-.card {
-  padding: v.$space-l;
-  background-color: v.$color-surface;
-  border: 1px solid v.$color-border;
-  border-radius: v.$radius;
-
-  transition:
-    box-shadow v.$transition,
-    transform v.$transition;
-
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px #202b3c18;
-  }
-
-  &__title {
-    margin: 0 0 v.$space-m;
-    font-size: 22px;
-    line-height: 1.3;
-  }
-
-  &__image {
-    display: block;
-    width: 300px;
-    max-width: 100%;
-    height: 200px;
-    margin: 0 0 v.$space-m;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-
-  &__text,
-  &__list {
-    margin: 0 0 v.$space-m;
-  }
-
-  &__list {
-    padding-left: v.$space-l;
-  }
-
-  &__item {
-    margin-bottom: 4px;
-  }
-
-  &__link {
-    color: v.$color-primary;
-    text-underline-offset: 3px;
-    transition: color v.$transition;
-
-    &:hover {
-      color: v.$color-primary-dark;
-    }
-
-    &:focus-visible {
-      @include focus-ring;
-    }
-  }
-}
-
-// Подробная страница специалиста.
-.profile {
-  padding: v.$space-l;
-  background-color: v.$color-surface;
-  border: 1px solid v.$color-border;
-  border-radius: v.$radius;
-
-  &__image {
-    display: block;
-    width: 600px;
-    max-width: 100%;
-    height: auto;
-    margin: 0 0 v.$space-l;
+    padding: v.$space-l;
+    background-color: v.$color-surface;
+    border: 1px solid v.$color-border;
     border-radius: v.$radius;
-  }
+
+    &_note {
+        background-color: v.$color-soft;
+    }
+
+    &__title {
+        margin: 0 0 v.$space-m;
+        font-size: 24px;
+        line-height: 1.3;
+    }
+
+    &__text {
+        margin: 0 0 v.$space-m;
+    }
+
+    &__list {
+        margin: 0 0 v.$space-m;
+        padding-left: v.$space-l;
+    }
+
+    &__item {
+        margin-bottom: v.$space-s;
+    }
+
+    &__accent {
+        color: v.$color-primary-dark;
+    }
+
+    &__link {
+        color: v.$color-primary;
+        text-underline-offset: 3px;
+        overflow-wrap: anywhere;
+        transition: color v.$transition;
+
+        &:hover {
+            color: v.$color-primary-dark;
+        }
+
+        &:focus-visible {
+            @include focus-ring;
+        }
+    }
+
+    &__table-wrap {
+        overflow-x: auto;
+
+        &:focus-visible {
+            @include focus-ring;
+        }
+    }
+}
+
+// Сетка карточек (Grid): число колонок зависит от ширины экрана.
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    gap: v.$space-m;
+}
+
+// Карточка специалиста (Flexbox).
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: v.$space-m;
+    max-width: 420px;
+    padding: v.$space-l;
+    background-color: v.$color-surface;
+    border: 1px solid v.$color-border;
+    border-radius: v.$radius;
+    transition:
+        box-shadow v.$transition,
+        transform v.$transition;
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px #202b3c18;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 22px;
+        line-height: 1.3;
+    }
+
+    // Картинка не деформируется при изменении ширины.
+    &__image {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    &__text,
+    &__list {
+        margin: 0;
+    }
+
+    // Последний абзац со ссылкой прижимается к низу карточки.
+    &__text:last-child {
+        margin-top: auto;
+    }
+
+    &__list {
+        padding-left: v.$space-l;
+    }
+
+    &__item {
+        margin-bottom: 4px;
+    }
+
+    &__link {
+        color: v.$color-primary;
+        text-underline-offset: 3px;
+        transition: color v.$transition;
+
+        &:hover {
+            color: v.$color-primary-dark;
+        }
+
+        &:focus-visible {
+            @include focus-ring;
+        }
+    }
+}
+
+// Подробная страница специалиста (Flexbox).
+.profile {
+    display: flex;
+    flex-direction: column;
+    gap: v.$space-l;
+    padding: v.$space-l;
+    background-color: v.$color-surface;
+    border: 1px solid v.$color-border;
+    border-radius: v.$radius;
+
+    &__image {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+        border-radius: v.$radius;
+    }
+}
+
+// Вариант 16: статистика профиля (Flexbox, равномерно по ширине).
+.stats {
+    display: flex;
+    justify-content: space-evenly;
+    gap: v.$space-s;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    &__item {
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        align-items: center;
+        padding: v.$space-m v.$space-s;
+        text-align: center;
+        background-color: v.$color-soft;
+        border-radius: 8px;
+    }
+
+    &__value {
+        font-size: 24px;
+        font-weight: 700;
+        color: v.$color-primary-dark;
+    }
+
+    &__label {
+        font-size: 14px;
+        color: v.$color-muted;
+    }
+}
+
+// Вариант 16: Masonry-подобная сетка портфолио (Grid).
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+    grid-auto-rows: 110px;
+    grid-auto-flow: dense;
+    gap: v.$space-m;
 }
 
 // Фотографии портфолио.
 .photo {
-  width: 100%;
-  max-width: 600px;
-
-  // Система координат для плашки статистики.
-  &__media {
-    position: relative;
-  }
-
-  &__image {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    height: 340px;
-    object-fit: cover;
-    border-radius: v.$radius;
-  }
-
-  // Вариант 16: статистика поверх изображения.
-  &__stats {
-    position: absolute;
-    right: 12px;
-    bottom: 12px;
-    left: 12px;
-
+    display: flex;
+    flex-direction: column;
+    gap: v.$space-s;
     margin: 0;
-    padding: 10px 12px;
 
-    font-size: 14px;
-    font-weight: 700;
-    text-align: center;
+    // Высота фото задаётся числом занятых строк сетки.
+    &_size_s {
+        grid-row: span 2;
+    }
 
-    color: v.$color-surface;
-    background-color: rgba(16, 28, 48, 0.85);
-    border-radius: 8px;
-  }
+    &_size_m {
+        grid-row: span 3;
+    }
 
-  &__caption {
-    margin-top: v.$space-s;
-    color: v.$color-muted;
-  }
+    &_size_l {
+        grid-row: span 4;
+    }
+
+    // ЛР2: система координат для плашки статистики.
+    &__media {
+        position: relative;
+        flex: 1;
+        min-height: 0;
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: v.$radius;
+    }
+
+    // ЛР2: статистика поверх изображения.
+    &__stats {
+        position: absolute;
+        right: 8px;
+        bottom: 8px;
+        left: 8px;
+        margin: 0;
+        padding: 6px 10px;
+        font-size: 13px;
+        font-weight: 700;
+        text-align: center;
+        color: v.$color-surface;
+        background-color: rgba(16, 28, 48, 0.85);
+        border-radius: 8px;
+    }
+
+    &__caption {
+        font-size: 14px;
+        color: v.$color-muted;
+    }
 }
 
 // Кнопки.
 .button {
-  display: inline-block;
-  padding: 10px 18px;
-
-  font: inherit;
-  font-weight: 700;
-
-  color: v.$color-surface;
-  background-color: v.$color-primary;
-
-  border: 1px solid v.$color-primary;
-  border-radius: 8px;
-  cursor: pointer;
-
-  transition:
-    background-color v.$transition,
-    transform v.$transition;
-
-  &:hover {
-    background-color: v.$color-primary-dark;
-    transform: translateY(-2px);
-  }
-
-  &:focus-visible {
-    @include focus-ring;
-  }
-
-  &_secondary {
-    color: v.$color-primary-dark;
-    background-color: v.$color-soft;
-
-    &:hover {
-      background-color: #d3e1f7;
-    }
-  }
-}
-
-// Панель фильтров.
-.filters {
-  padding: v.$space-m;
-  background-color: v.$color-surface;
-  border: 1px solid v.$color-primary;
-  border-radius: v.$radius;
-  box-shadow: 0 6px 18px #202b3c12;
-
-  &__title {
-    margin: 0 0 v.$space-s;
-    font-size: 18px;
-  }
-
-  &__field {
-    display: inline-block;
-    width: 30%;
-    max-width: 260px;
-    margin-right: v.$space-s;
-    vertical-align: bottom;
-  }
-
-  &__label {
-    display: block;
-    margin-bottom: 4px;
-    font-size: 14px;
-  }
-
-  &__input {
-    width: 100%;
-    min-height: 46px;
-    padding: 8px;
-
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
     font: inherit;
-
-    color: v.$color-text;
-    background-color: v.$color-surface;
-
-    border: 1px solid v.$color-border;
-    border-radius: 8px;
-
-    transition: border-color v.$transition;
-
-    &:hover {
-      border-color: v.$color-primary;
-    }
-
-    &:focus-visible {
-      @include focus-ring;
-    }
-  }
-
-  &__button {
-    margin: 8px 0 0;
-    vertical-align: bottom;
-  }
-
-  @media (max-width: 600px) {
-    &__field {
-      width: 34%;
-    }
-  }
-}
-
-// Форма заявки.
-.form {
-  &__field {
-    margin: 0 0 v.$space-l;
-  }
-
-  &__label {
-    display: block;
-    margin-bottom: v.$space-s;
     font-weight: 700;
-  }
-
-  &__input {
-    display: block;
-    width: 100%;
-    max-width: 620px;
-    min-height: 46px;
-    padding: 10px 12px;
-
-    font: inherit;
-
-    color: v.$color-text;
-    background-color: v.$color-surface;
-
-    border: 1px solid v.$color-border;
+    color: v.$color-surface;
+    background-color: v.$color-primary;
+    border: 1px solid v.$color-primary;
     border-radius: 8px;
-
-    transition:
-      border-color v.$transition,
-      background-color v.$transition;
-
-    &:hover {
-      border-color: v.$color-primary;
-      background-color: #fafcff;
-    }
-
-    &:focus-visible {
-      @include focus-ring;
-    }
-
-    &_area {
-      min-height: 140px;
-      resize: vertical;
-    }
-  }
-
-  &__group {
-    margin: 0 0 v.$space-l;
-    padding: v.$space-m;
-    border: 1px solid v.$color-border;
-    border-radius: 8px;
-  }
-
-  &__legend {
-    padding: 0 v.$space-s;
-    font-weight: 700;
-  }
-
-  &__choice {
-    margin-right: v.$space-s;
-    accent-color: v.$color-primary;
-
-    &:focus-visible {
-      @include focus-ring;
-    }
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  &__choice-label {
     cursor: pointer;
-  }
+    transition:
+        background-color v.$transition,
+        transform v.$transition;
 
-  &__button {
-    margin: 0 v.$space-s v.$space-s 0;
-  }
+    &:hover {
+        background-color: v.$color-primary-dark;
+        transform: translateY(-2px);
+    }
+
+    &:focus-visible {
+        @include focus-ring;
+    }
+
+    &_secondary {
+        color: v.$color-primary-dark;
+        background-color: v.$color-soft;
+
+        &:hover {
+            background-color: #d3e1f7;
+        }
+    }
+}
+
+// Панель фильтров (Flexbox).
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: v.$space-s v.$space-m;
+    padding: v.$space-m;
+    background-color: v.$color-surface;
+    border: 1px solid v.$color-primary;
+    border-radius: v.$radius;
+    box-shadow: 0 6px 18px #202b3c12;
+
+    &__title {
+        flex-basis: 100%;
+        margin: 0;
+        font-size: 18px;
+    }
+
+    &__field {
+        display: flex;
+        flex: 1 1 160px;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    &__label {
+        font-size: 14px;
+    }
+
+    &__input {
+        width: 100%;
+        min-height: 46px;
+        padding: 8px;
+        font: inherit;
+        color: v.$color-text;
+        background-color: v.$color-surface;
+        border: 1px solid v.$color-border;
+        border-radius: 8px;
+        transition: border-color v.$transition;
+
+        &:hover {
+            border-color: v.$color-primary;
+        }
+
+        &:focus-visible {
+            @include focus-ring;
+        }
+    }
+
+    &__button {
+        min-height: 46px;
+    }
+}
+
+// Форма заявки (Flexbox).
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: v.$space-l;
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+        gap: v.$space-s;
+        margin: 0;
+
+        // Чекбокс или радиокнопка с подписью в одну строку.
+        &_choice {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        // Кнопки в ряд.
+        &_buttons {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+    }
+
+    &__label {
+        font-weight: 700;
+    }
+
+    &__input {
+        width: 100%;
+        max-width: 620px;
+        min-height: 46px;
+        padding: 10px 12px;
+        font: inherit;
+        color: v.$color-text;
+        background-color: v.$color-surface;
+        border: 1px solid v.$color-border;
+        border-radius: 8px;
+        transition:
+            border-color v.$transition,
+            background-color v.$transition;
+
+        &:hover {
+            border-color: v.$color-primary;
+            background-color: #fafcff;
+        }
+
+        &:focus-visible {
+            @include focus-ring;
+        }
+
+        &_area {
+            min-height: 140px;
+            resize: vertical;
+        }
+    }
+
+    // Радиокнопки: столбиком на телефоне, в ряд с 768px.
+    &__group {
+        display: flex;
+        flex-direction: column;
+        gap: v.$space-s;
+        margin: 0;
+        padding: v.$space-m;
+        border: 1px solid v.$color-border;
+        border-radius: 8px;
+    }
+
+    &__legend {
+        padding: 0 v.$space-s;
+        font-weight: 700;
+    }
+
+    &__choice {
+        margin: 0;
+        accent-color: v.$color-primary;
+        cursor: pointer;
+
+        &:focus-visible {
+            @include focus-ring;
+        }
+    }
+
+    &__choice-label {
+        cursor: pointer;
+    }
+
+    @media (min-width: v.$bp-tablet) {
+        &__group {
+            flex-direction: row;
+            gap: v.$space-l;
+        }
+    }
 }
 
 // Таблица избранных специалистов.
 .table {
-  width: 100%;
-  min-width: 720px;
-  border-collapse: collapse;
+    width: 100%;
+    min-width: 720px;
+    border-collapse: collapse;
 
-  &__caption {
-    margin-bottom: v.$space-m;
-    text-align: left;
-    font-weight: 700;
-  }
+    &__caption {
+        margin-bottom: v.$space-m;
+        text-align: left;
+        font-weight: 700;
+    }
 
-  &__cell {
-    padding: 12px;
-    text-align: left;
-    vertical-align: top;
-    border: 1px solid v.$color-border;
-  }
+    &__cell {
+        padding: 12px;
+        text-align: left;
+        vertical-align: top;
+        border: 1px solid v.$color-border;
+    }
 
-  &__cell_heading {
-    font-weight: 700;
-    background-color: v.$color-soft;
-  }
+    &__cell_heading {
+        font-weight: 700;
+        background-color: v.$color-soft;
+    }
 
-  &__foot {
-    background-color: v.$color-soft;
-  }
+    &__foot {
+        background-color: v.$color-soft;
+    }
 }
 
-// Подвал.
+// Подвал (Flexbox).
 .footer {
-  padding: v.$space-l;
-  text-align: center;
-  color: v.$color-muted;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: v.$space-m;
+    padding: v.$space-l;
+    color: v.$color-muted;
 
-  &__text {
-    margin: 0;
-  }
+    &__text {
+        margin: 0;
+    }
+
+    // Ссылка-иконка без текста, подпись в aria-label.
+    &__up {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        color: v.$color-primary-dark;
+        text-decoration: none;
+        background-color: v.$color-surface;
+        border: 1px solid v.$color-border;
+        border-radius: 50%;
+        transition: background-color v.$transition;
+
+        &:hover {
+            background-color: v.$color-soft;
+        }
+
+        &:focus-visible {
+            @include focus-ring;
+        }
+    }
 }

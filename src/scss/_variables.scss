@@ -19,5 +19,9 @@ $space-m: 16px;
 $space-l: 24px;
 $space-xl: 32px;
 $radius: 12px;
-$container-width: 1040px;
+$container-width: 1200px;
 $transition: 0.2s ease;
+
+// Контрольные точки (Mobile First)
+$bp-tablet: 768px;
+$bp-desktop: 1200px;

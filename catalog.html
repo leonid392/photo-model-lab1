@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="src/css/style.css">
 </head>
 <body class="page">
-    <header class="page__header header">
+    <header class="page__header header" id="top">
         <h1 class="header__title">ФотоБиржа</h1>
         <p class="header__text">Биржа для фотографов и моделей</p>
     </header>
@@ -89,146 +89,152 @@
         <section class="page__section section">
             <h2 class="section__title">Фотографы</h2>
 
-            <article class="page__card card" id="alexey-smirnov">
-                <h3 class="card__title">Алексей Смирнов</h3>
+            <div class="cards">
+                <article class="page__card card" id="alexey-smirnov">
+                    <h3 class="card__title">Алексей Смирнов</h3>
 
-                <img class="card__image"
-                     src="images/alexey.jpg"
-                     alt="Фотограф Алексей Смирнов с фотоаппаратом в парке"
-                     width="300"
-                     height="200"
-                     loading="lazy">
+                    <img class="card__image"
+                         src="images/alexey.jpg"
+                         alt="Фотограф Алексей Смирнов с фотоаппаратом в парке"
+                         width="300"
+                         height="200"
+                         loading="lazy">
 
-                <p class="card__text">
-                    Проводит портретные и семейные фотосессии.
-                    Помогает подобрать место съёмки и подготовиться к ней.
-                </p>
+                    <p class="card__text">
+                        Проводит портретные и семейные фотосессии.
+                        Помогает подобрать место съёмки и подготовиться к ней.
+                    </p>
 
-                <ul class="card__list">
-                    <li class="card__item">
-                        Специализация: портретная и семейная съёмка.
-                    </li>
-                    <li class="card__item">Город: Уфа.</li>
-                    <li class="card__item">Опыт работы: 5 лет.</li>
-                    <li class="card__item">
-                        Базовая ставка: 3 000 рублей в час.
-                    </li>
-                </ul>
+                    <ul class="card__list">
+                        <li class="card__item">
+                            Специализация: портретная и семейная съёмка.
+                        </li>
+                        <li class="card__item">Город: Уфа.</li>
+                        <li class="card__item">Опыт работы: 5 лет.</li>
+                        <li class="card__item">
+                            Базовая ставка: 3 000 рублей в час.
+                        </li>
+                    </ul>
 
-                <p class="card__text">
-                    <a class="card__link" href="detail.html">
-                        Подробнее о фотографе
-                    </a>
-                </p>
-            </article>
+                    <p class="card__text">
+                        <a class="card__link" href="detail.html">
+                            Подробнее о фотографе
+                        </a>
+                    </p>
+                </article>
 
-            <article class="page__card card" id="maria-volkova">
-                <h3 class="card__title">Мария Волкова</h3>
+                <article class="page__card card" id="maria-volkova">
+                    <h3 class="card__title">Мария Волкова</h3>
 
-                <img class="card__image"
-                     src="images/maria.jpg"
-                     alt="Фотограф Мария Волкова с фотоаппаратом в саду"
-                     width="300"
-                     height="200"
-                     loading="lazy">
+                    <img class="card__image"
+                         src="images/maria.jpg"
+                         alt="Фотограф Мария Волкова с фотоаппаратом в саду"
+                         width="300"
+                         height="200"
+                         loading="lazy">
 
-                <p class="card__text">
-                    Снимает свадьбы, праздники и другие мероприятия.
-                    Создаёт постановочные и репортажные фотографии.
-                </p>
+                    <p class="card__text">
+                        Снимает свадьбы, праздники и другие мероприятия.
+                        Создаёт постановочные и репортажные фотографии.
+                    </p>
 
-                <ul class="card__list">
-                    <li class="card__item">
-                        Специализация: свадебная и репортажная съёмка.
-                    </li>
-                    <li class="card__item">Город: Казань.</li>
-                    <li class="card__item">Опыт работы: 7 лет.</li>
-                    <li class="card__item">
-                        Базовая ставка: 4 000 рублей в час.
-                    </li>
-                </ul>
+                    <ul class="card__list">
+                        <li class="card__item">
+                            Специализация: свадебная и репортажная съёмка.
+                        </li>
+                        <li class="card__item">Город: Казань.</li>
+                        <li class="card__item">Опыт работы: 7 лет.</li>
+                        <li class="card__item">
+                            Базовая ставка: 4 000 рублей в час.
+                        </li>
+                    </ul>
 
-                <p class="card__text">
-                    <a class="card__link" href="checkout.html">
-                        Оставить заявку на съёмку
-                    </a>
-                </p>
-            </article>
+                    <p class="card__text">
+                        <a class="card__link" href="checkout.html">
+                            Оставить заявку на съёмку
+                        </a>
+                    </p>
+                </article>
 
-            <article class="page__card card" id="dmitry-orlov">
-                <h3 class="card__title">Дмитрий Орлов</h3>
+                <article class="page__card card" id="dmitry-orlov">
+                    <h3 class="card__title">Дмитрий Орлов</h3>
 
-                <img class="card__image"
-                     src="images/dmitry.jpg"
-                     alt="Фотограф Дмитрий Орлов с фотоаппаратом в студии"
-                     width="300"
-                     height="200"
-                     loading="lazy">
+                    <img class="card__image"
+                         src="images/dmitry.jpg"
+                         alt="Фотограф Дмитрий Орлов с фотоаппаратом в студии"
+                         width="300"
+                         height="200"
+                         loading="lazy">
 
-                <p class="card__text">
-                    Создаёт фотографии товаров для каталогов и рекламы.
-                    Работает с освещением и предметными композициями.
-                </p>
+                    <p class="card__text">
+                        Создаёт фотографии товаров для каталогов и рекламы.
+                        Работает с освещением и предметными композициями.
+                    </p>
 
-                <ul class="card__list">
-                    <li class="card__item">
-                        Специализация: предметная и рекламная съёмка.
-                    </li>
-                    <li class="card__item">Город: Уфа.</li>
-                    <li class="card__item">Опыт работы: 4 года.</li>
-                    <li class="card__item">
-                        Базовая ставка: 2 500 рублей в час.
-                    </li>
-                </ul>
+                    <ul class="card__list">
+                        <li class="card__item">
+                            Специализация: предметная и рекламная съёмка.
+                        </li>
+                        <li class="card__item">Город: Уфа.</li>
+                        <li class="card__item">Опыт работы: 4 года.</li>
+                        <li class="card__item">
+                            Базовая ставка: 2 500 рублей в час.
+                        </li>
+                    </ul>
 
-                <p class="card__text">
-                    <a class="card__link" href="checkout.html">
-                        Оставить заявку на съёмку
-                    </a>
-                </p>
-            </article>
+                    <p class="card__text">
+                        <a class="card__link" href="checkout.html">
+                            Оставить заявку на съёмку
+                        </a>
+                    </p>
+                </article>
+            </div>
         </section>
 
         <section class="page__section section">
             <h2 class="section__title">Модели</h2>
 
-            <article class="page__card card" id="anna-sokolova">
-                <h3 class="card__title">Анна Соколова</h3>
+            <div class="cards">
+                <article class="page__card card" id="anna-sokolova">
+                    <h3 class="card__title">Анна Соколова</h3>
 
-                <img class="card__image"
-                     src="images/anna.jpg"
-                     alt="Модель Анна Соколова в белой блузке в студии"
-                     width="300"
-                     height="200"
-                     loading="lazy">
+                    <img class="card__image"
+                         src="images/anna.jpg"
+                         alt="Модель Анна Соколова в белой блузке в студии"
+                         width="300"
+                         height="200"
+                         loading="lazy">
 
-                <p class="card__text">
-                    Участвует в портретных и рекламных фотосессиях,
-                    съёмках одежды и творческих проектах.
-                </p>
+                    <p class="card__text">
+                        Участвует в портретных и рекламных фотосессиях,
+                        съёмках одежды и творческих проектах.
+                    </p>
 
-                <ul class="card__list">
-                    <li class="card__item">
-                        Специализация: портретная и рекламная съёмка.
-                    </li>
-                    <li class="card__item">Город: Уфа.</li>
-                    <li class="card__item">Опыт работы: 3 года.</li>
-                    <li class="card__item">
-                        Базовая ставка: 2 000 рублей в час.
-                    </li>
-                </ul>
+                    <ul class="card__list">
+                        <li class="card__item">
+                            Специализация: портретная и рекламная съёмка.
+                        </li>
+                        <li class="card__item">Город: Уфа.</li>
+                        <li class="card__item">Опыт работы: 3 года.</li>
+                        <li class="card__item">
+                            Базовая ставка: 2 000 рублей в час.
+                        </li>
+                    </ul>
 
-                <p class="card__text">
-                    <a class="card__link" href="checkout.html">
-                        Оставить заявку на съёмку
-                    </a>
-                </p>
-            </article>
+                    <p class="card__text">
+                        <a class="card__link" href="checkout.html">
+                            Оставить заявку на съёмку
+                        </a>
+                    </p>
+                </article>
+            </div>
         </section>
     </main>
 
     <footer class="page__footer footer">
         <p class="footer__text">&copy; 2026 ФотоБиржа</p>
+
+        <a class="footer__up" href="#top" aria-label="Наверх страницы">↑</a>
     </footer>
 </body>
 </html>
