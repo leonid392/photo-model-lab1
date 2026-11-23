@@ -1,14 +1,5 @@
 "use strict";
 
-const portraitExample = {
-    src: "images/portfolio-portrait.jpg",
-    alt: "Пример портретной фотографии из портфолио ФотоБиржи"
-};
-const familyExample = {
-    src: "images/portfolio-family.jpg",
-    alt: "Пример семейной фотографии из портфолио ФотоБиржи"
-};
-
 const specialists = [
     {
         id: 1, name: "Алексей Смирнов", profession: "Фотограф", city: "Уфа",
@@ -16,21 +7,21 @@ const specialists = [
         specializations: ["портретная", "семейная съёмка"],
         anchor: "alexey-smirnov",
         profileUrl: "detail.html",
-        image: { src: "images/alexey.jpg", alt: "Алексей Смирнов с фотоаппаратом" }
+        image: { src: "images/photographers/alexey.webp", alt: "Фотограф Алексей Смирнов" }
     },
     {
-        id: 2, name: "Мария Волкова", profession: "Фотограф", city: "Казань",
+        id: 2, name: "Мария Волкова", profession: "Фотограф", city: "Уфа",
         hourlyRate: 4000, reviewsCount: 87, experienceYears: 7, worksRemotely: false,
         specializations: ["свадебная", "репортажная съёмка"],
         anchor: "maria-volkova",
-        image: { src: "images/maria.jpg", alt: "Мария Волкова с фотоаппаратом" }
+        image: { src: "images/photographers/maria.webp", alt: "Фотограф Мария Волкова" }
     },
     {
         id: 3, name: "Дмитрий Орлов", profession: "Фотограф", city: "Уфа",
         hourlyRate: 2500, reviewsCount: 39, experienceYears: 4, worksRemotely: false,
         specializations: ["предметная", "рекламная съёмка"],
         anchor: "dmitry-orlov",
-        image: { src: "images/dmitry.jpg", alt: "Дмитрий Орлов с фотоаппаратом" }
+        image: { src: "images/photographers/dmitry.webp", alt: "Фотограф Дмитрий Орлов" }
     },
     {
         id: 4, name: "Анна Соколова", profession: "Ретушёр", city: "Уфа",
@@ -43,67 +34,67 @@ const specialists = [
         id: 5, name: "Кирилл Егоров", profession: "Фотограф", city: "Уфа",
         hourlyRate: 3600, reviewsCount: 73, experienceYears: 6, worksRemotely: false,
         specializations: ["портретная", "деловая съёмка"],
-        image: portraitExample
+        image: { src: "images/photographers/kirill.webp", alt: "Фотограф Кирилл Егоров" }
     },
     {
-        id: 6, name: "Дарья Крылова", profession: "Фотограф", city: "Казань",
+        id: 6, name: "Дарья Крылова", profession: "Фотограф", city: "Уфа",
         hourlyRate: 3800, reviewsCount: 67, experienceYears: 5, worksRemotely: false,
         specializations: ["детская", "семейная съёмка"],
-        image: familyExample
+        image: { src: "images/photographers/daria.webp", alt: "Фотограф Дарья Крылова" }
     },
     {
         id: 7, name: "Павел Сафин", profession: "Фотограф", city: "Уфа",
         hourlyRate: 2800, reviewsCount: 29, experienceYears: 3, worksRemotely: false,
         specializations: ["прогулочная", "репортажная съёмка"],
-        image: familyExample
+        image: { src: "images/photographers/pavel.webp", alt: "Фотограф Павел Сафин" }
     },
     {
-        id: 8, name: "Эльмира Валеева", profession: "Фотограф", city: "Казань",
+        id: 8, name: "Эльмира Валеева", profession: "Фотограф", city: "Уфа",
         hourlyRate: 4200, reviewsCount: 104, experienceYears: 8, worksRemotely: false,
         specializations: ["свадебная", "семейная съёмка"],
-        image: familyExample
+        image: { src: "images/photographers/elmira.webp", alt: "Фотограф Эльмира Валеева" }
     },
     {
         id: 9, name: "Рустем Ахметов", profession: "Фотограф", city: "Уфа",
         hourlyRate: 4600, reviewsCount: 96, experienceYears: 9, worksRemotely: false,
         specializations: ["свадебная", "портретная съёмка"],
-        image: portraitExample
+        image: { src: "images/photographers/rustem.webp", alt: "Фотограф Рустем Ахметов" }
     },
     {
         id: 10, name: "Елена Миронова", profession: "Ретушёр", city: "Казань",
         hourlyRate: 2400, reviewsCount: 142, experienceYears: 8, worksRemotely: true,
         specializations: ["студийная ретушь", "цветокоррекция"],
-        image: portraitExample
+        image: { src: "images/retouchers/elena.webp", alt: "Ретушёр Елена Миронова" }
     },
     {
         id: 11, name: "Алина Юсупова", profession: "Ретушёр", city: "Уфа",
         hourlyRate: 1800, reviewsCount: 45, experienceYears: 4, worksRemotely: true,
         specializations: ["ретушь портретов", "цветокоррекция"],
-        image: portraitExample
+        image: { src: "images/retouchers/alina.webp", alt: "Ретушёр Алина Юсупова" }
     },
     {
         id: 12, name: "Тимур Давлетов", profession: "Ретушёр", city: "Казань",
         hourlyRate: 2200, reviewsCount: 62, experienceYears: 5, worksRemotely: true,
         specializations: ["обработка предметных снимков", "обтравка"],
-        image: portraitExample
+        image: { src: "images/retouchers/timur.webp", alt: "Ретушёр Тимур Давлетов" }
     },
     {
         id: 13, name: "Виктория Белова", profession: "Ретушёр", city: "Уфа",
         hourlyRate: 2100, reviewsCount: 78, experienceYears: 6, worksRemotely: true,
         specializations: ["обработка семейных фотографий", "цветокоррекция"],
-        image: familyExample
+        image: { src: "images/retouchers/victoria.webp", alt: "Ретушёр Виктория Белова" }
     },
     {
-        id: 14, name: "Илья Котов", profession: "Фотограф", city: "Казань",
+        id: 14, name: "Илья Котов", profession: "Фотограф", city: "Уфа",
         hourlyRate: 3200, reviewsCount: 36, experienceYears: 3, worksRemotely: false,
         specializations: ["портретная", "предметная съёмка"],
-        image: portraitExample
+        image: { src: "images/photographers/ilya.webp", alt: "Фотограф Илья Котов" }
     },
     {
         id: 15, name: "Гульназ Исхакова", profession: "Ретушёр", city: "Уфа",
         hourlyRate: 2600, reviewsCount: 112, experienceYears: 7, worksRemotely: true,
         specializations: ["рекламная ретушь", "цветокоррекция"],
-        image: portraitExample
+        image: { src: "images/retouchers/gulnaz.webp", alt: "Ретушёр Гульназ Исхакова" }
     }
 ];
 
