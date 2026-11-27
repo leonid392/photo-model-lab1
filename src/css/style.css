@@ -226,6 +226,18 @@ img {
 .card__text:last-child {
   margin-top: auto;
 }
+.card__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: auto;
+}
+.card__actions .button {
+  width: 100%;
+  padding-inline: 10px;
+  text-align: center;
+}
 .card__list {
   padding-left: 24px;
 }
@@ -418,6 +430,10 @@ img {
 }
 .filters__button {
   min-height: 46px;
+}
+
+.reviews__list {
+  overflow-wrap: anywhere;
 }
 
 .form {

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Каталог специалистов — ФотоБиржа</title>
     <link rel="stylesheet" href="src/css/style.css">
+    <link rel="icon" href="data:,">
     <script src="js/main.js" defer></script>
 </head>
 <body class="page">
@@ -49,6 +50,9 @@
                 В каталоге представлены фотографы и ретушёры. В карточках указаны
                 специализация, почасовая ставка и количество отзывов.
             </p>
+            <p class="section__text">
+                <a class="section__link" href="#review-section">Оставить отзыв о фотографе</a>
+            </p>
         </section>
 
         <form class="page__filters filters" aria-label="Фильтры специалистов">
@@ -90,7 +94,36 @@
         <section class="page__section section">
             <h2 class="section__title">Фотографы и ретушёры</h2>
 
+            <p id="shortlist-status" class="section__text" role="status"></p>
             <div class="cards" id="catalog-container"></div>
+        </section>
+
+        <section class="page__section section" id="review-section">
+            <h2 class="section__title">Отзыв о фотографе</h2>
+
+            <form class="form" id="review-form">
+                <div class="form__field">
+                    <label class="form__label" for="review-photographer">Фотограф</label>
+                    <select class="form__input" id="review-photographer" name="specialistId" required></select>
+                </div>
+                <div class="form__field">
+                    <label class="form__label" for="review-author">Ваше имя</label>
+                    <input class="form__input" id="review-author" name="author" maxlength="80" required>
+                </div>
+                <div class="form__field">
+                    <label class="form__label" for="review-text">Отзыв</label>
+                    <textarea class="form__input form__input_area" id="review-text" name="text"
+                              maxlength="600" rows="4" required></textarea>
+                </div>
+                <div class="form__field form__field_buttons">
+                    <button class="button" type="submit">Опубликовать отзыв</button>
+                </div>
+                <p id="review-status" class="section__text" role="status"></p>
+            </form>
+
+            <h3 class="section__title" id="review-list-title">Отзывы о выбранном фотографе</h3>
+            <p id="reviews-empty" class="section__text">Здесь появятся отзывы из этого браузера.</p>
+            <ul class="section__list reviews__list" id="review-list"></ul>
         </section>
     </main>
 

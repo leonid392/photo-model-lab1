@@ -276,6 +276,20 @@
         margin-top: auto;
     }
 
+    &__actions {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        margin-top: auto;
+
+        .button {
+            width: 100%;
+            padding-inline: 10px;
+            text-align: center;
+        }
+    }
+
     &__list {
         padding-left: v.$space-l;
     }
@@ -506,6 +520,10 @@
 }
 
 // Форма заявки (Flexbox).
+.reviews__list {
+    overflow-wrap: anywhere;
+}
+
 .form {
     display: flex;
     flex-direction: column;

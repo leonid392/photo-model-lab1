@@ -1,6 +1,6 @@
 "use strict";
 
-const specialists = [
+const defaultSpecialists = [
     {
         id: 1, name: "Алексей Смирнов", profession: "Фотограф", city: "Уфа",
         hourlyRate: 3000, reviewsCount: 64, experienceYears: 5, worksRemotely: false,
@@ -99,6 +99,36 @@ const specialists = [
 ];
 
 const numberFormat = new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 2 });
+const storageKeys = {
+    specialists: "photobirzha.specialists",
+    shortlist: "photobirzha.shortlist"
+};
+
+function loadList(key, fallback) {
+    try {
+        const saved = JSON.parse(localStorage.getItem(key));
+        return Array.isArray(saved) ? saved : fallback;
+    } catch {
+        return fallback;
+    }
+}
+
+function saveList(key, items) {
+    try {
+        localStorage.setItem(key, JSON.stringify(items));
+        return true;
+    } catch {
+        return false;
+    }
+}
+
+let specialists = loadList(storageKeys.specialists, defaultSpecialists);
+let shortlist = loadList(storageKeys.shortlist, []);
+
+function updateShortlistButton(button, isSaved) {
+    button.textContent = isSaved ? "Убрать из шорт-листа" : "Добавить в шорт-лист";
+    button.classList.toggle("button_secondary", isSaved);
+}
 
 class Specialist {
     constructor(data) {
@@ -116,7 +146,7 @@ class Specialist {
         this.profileUrl = data.profileUrl;
     }
 
-    render() {
+    render(isSaved) {
         const card = document.createElement("article");
         card.className = "page__card card";
         card.dataset.id = this.id;
@@ -155,23 +185,40 @@ class Specialist {
             details.append(item);
         });
 
-        const action = document.createElement("p");
-        action.className = "card__text";
+        const actions = document.createElement("div");
+        actions.className = "card__actions";
         const link = document.createElement("a");
         link.className = "card__link";
         link.setAttribute("href", this.profileUrl ?? "checkout.html");
         link.textContent = this.profileUrl ? "Подробнее о фотографе" : "Перейти к заявке";
-        action.append(link);
+        actions.append(link);
 
-        card.append(title, image, subtitle, details, action);
+        if (this.profession === "Фотограф") {
+            const reviewLink = document.createElement("a");
+            reviewLink.className = "card__link";
+            reviewLink.href = "catalog.html?photographer=" + this.id + "#review-section";
+            reviewLink.dataset.action = "review";
+            reviewLink.textContent = "Оставить отзыв";
+            actions.append(reviewLink);
+        }
+
+        const shortlistButton = document.createElement("button");
+        shortlistButton.type = "button";
+        shortlistButton.className = "button";
+        shortlistButton.dataset.action = "shortlist";
+        updateShortlistButton(shortlistButton, isSaved);
+        actions.append(shortlistButton);
+
+        card.append(title, image, subtitle, details, actions);
         return card;
     }
 }
 
-function renderCatalog(container, data) {
+function renderCatalog(container, data, shortlistIds) {
+    container.replaceChildren();
     data.forEach((item) => {
         const specialist = new Specialist(item);
-        container.append(specialist.render());
+        container.append(specialist.render(shortlistIds.has(item.id)));
     });
 }
 
@@ -189,14 +236,179 @@ function analyzeSpecialists(data, city) {
     return { averageRate, mostReviewed };
 }
 
-const container = document.querySelector("#catalog-container");
-if (container) {
-    renderCatalog(container, specialists);
+const catalog = document.querySelector("#catalog-container");
+const shortlistContainer = document.querySelector("#shortlist-container");
+const shortlistStatus = document.querySelector("#shortlist-status");
+const shortlistEmpty = document.querySelector("#shortlist-empty");
+const reviewForm = document.querySelector("#review-form");
+const photographerSelect = document.querySelector("#review-photographer");
+const reviewStatus = document.querySelector("#review-status");
+const reviewList = document.querySelector("#review-list");
+const reviewListTitle = document.querySelector("#review-list-title");
+const reviewsEmpty = document.querySelector("#reviews-empty");
 
+function renderCards() {
+    const shortlistIds = new Set(shortlist.map((person) => person.id));
+    if (catalog) {
+        renderCatalog(catalog, specialists, shortlistIds);
+    }
+    if (shortlistContainer) {
+        const currentProfiles = new Map(specialists.map((person) => [person.id, person]));
+        const profiles = shortlist.map((saved) => currentProfiles.get(saved.id) ?? saved);
+        renderCatalog(shortlistContainer, profiles, shortlistIds);
+        shortlistEmpty.hidden = profiles.length !== 0;
+    }
+}
+
+function renderReviews() {
+    const photographer = specialists.find((person) => person.id === Number(photographerSelect.value));
+    reviewListTitle.textContent = photographer ? "Отзывы — " + photographer.name : "Отзывы";
+    const comments = photographer?.comments ?? [];
+    reviewList.replaceChildren();
+    reviewsEmpty.hidden = comments.length !== 0;
+
+    comments.forEach(({ author, text }) => {
+        const item = document.createElement("li");
+        item.className = "section__item";
+        const name = document.createElement("strong");
+        name.textContent = author;
+        const content = document.createElement("p");
+        content.className = "section__text";
+        content.textContent = text;
+        item.append(name, content);
+        reviewList.append(item);
+    });
+}
+
+function handleCardClick(event) {
+    const action = event.target.closest("[data-action]");
+    if (!action || !event.currentTarget.contains(action)) {
+        return;
+    }
+
+    const id = Number(action.closest(".card[data-id]")?.dataset.id);
+    if (action.dataset.action === "review" && reviewForm) {
+        event.preventDefault();
+        photographerSelect.value = String(id);
+        reviewStatus.textContent = "";
+        renderReviews();
+        photographerSelect.focus();
+        return;
+    }
+    if (action.dataset.action !== "shortlist") {
+        return;
+    }
+
+    const current = loadList(storageKeys.shortlist, shortlist);
+    const saved = current.find((person) => person.id === id);
+    const person = saved ?? specialists.find((entry) => entry.id === id);
+    if (!person) {
+        return;
+    }
+    const next = saved ? current.filter((entry) => entry.id !== id) : [...current, person];
+    if (!saveList(storageKeys.shortlist, next)) {
+        shortlistStatus.textContent = "Не удалось сохранить шорт-лист. Проверьте настройки браузера.";
+        return;
+    }
+
+    shortlist = next;
+    shortlistStatus.textContent = saved
+        ? person.name + " — профиль убран из шорт-листа."
+        : person.name + " — профиль добавлен в шорт-лист.";
+    if (catalog) {
+        updateShortlistButton(action, !saved);
+    } else {
+        renderCards();
+        const nextButton = shortlistContainer.querySelector("[data-action=shortlist]");
+        (nextButton ?? document.querySelector('.section__link[href="catalog.html"]')).focus();
+    }
+}
+
+function handleReviewSubmit(event) {
+    event.preventDefault();
+    const fields = new FormData(event.currentTarget);
+    const specialistId = Number(fields.get("specialistId"));
+    const author = String(fields.get("author") ?? "").trim();
+    const text = String(fields.get("text") ?? "").trim();
+    const current = loadList(storageKeys.specialists, defaultSpecialists);
+    const photographer = current.find((person) => person.id === specialistId && person.profession === "Фотограф");
+    if (!photographer || !author || !text) {
+        reviewStatus.textContent = "Выберите фотографа, укажите имя и напишите отзыв.";
+        return;
+    }
+
+    const updated = {
+        ...photographer,
+        comments: [...(photographer.comments ?? []), { author, text }],
+        reviewsCount: photographer.reviewsCount + 1
+    };
+    const next = current.map((person) => person.id === specialistId ? updated : person);
+    if (!saveList(storageKeys.specialists, next)) {
+        reviewStatus.textContent = "Не удалось сохранить отзыв. Проверьте настройки браузера.";
+        return;
+    }
+
+    specialists = next;
+    reviewForm.reset();
+    photographerSelect.value = String(specialistId);
+    renderCards();
+    renderReviews();
+    reviewStatus.textContent = "Отзыв опубликован.";
+}
+
+if (reviewForm) {
+    const photographers = specialists.filter((person) => person.profession === "Фотограф");
+    photographers.forEach((person) => {
+        const option = document.createElement("option");
+        option.value = person.id;
+        option.textContent = person.name;
+        photographerSelect.append(option);
+    });
+
+    const requestedId = Number(new URLSearchParams(location.search).get("photographer"));
+    const preselected = photographers.find((person) => person.id === requestedId)
+        ?? photographers.find((person) => person.comments?.length);
+    if (preselected) {
+        photographerSelect.value = String(preselected.id);
+    }
+    photographerSelect.addEventListener("change", () => {
+        reviewStatus.textContent = "";
+        renderReviews();
+    });
+    reviewForm.addEventListener("submit", handleReviewSubmit);
+    renderReviews();
+}
+
+const cardsContainer = catalog ?? shortlistContainer;
+if (cardsContainer) {
+    renderCards();
+    cardsContainer.addEventListener("click", handleCardClick);
+
+    const restoreViews = () => {
+        specialists = loadList(storageKeys.specialists, defaultSpecialists);
+        shortlist = loadList(storageKeys.shortlist, []);
+        renderCards();
+        if (reviewForm) {
+            renderReviews();
+        }
+    };
+    window.addEventListener("storage", (event) => {
+        if (event.key === null || Object.values(storageKeys).includes(event.key)) {
+            restoreViews();
+        }
+    });
+    window.addEventListener("pageshow", (event) => {
+        if (event.persisted) {
+            restoreViews();
+        }
+    });
+}
+
+if (catalog) {
     const selectedCity = "Уфа";
     const { averageRate, mostReviewed } = analyzeSpecialists(specialists, selectedCity);
 
-    console.log("Лабораторная работа №4. Вариант 16");
+    console.log("Лабораторная работа №5. Вариант 16");
     const rate = averageRate === null ? "нет данных" : `${numberFormat.format(averageRate)} ₽/ч`;
     console.log(`Средняя ставка фотографов (${selectedCity}): ${rate}`);
 

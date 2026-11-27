@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Избранные специалисты — ФотоБиржа</title>
     <link rel="stylesheet" href="src/css/style.css">
+    <link rel="icon" href="data:,">
     <script src="js/main.js" defer></script>
 </head>
 <body class="page">
@@ -43,127 +44,15 @@
 
     <main class="page__main">
         <section class="page__section section">
-            <h2 class="section__title">Избранные специалисты</h2>
-
-            <p class="section__text">
-                Сравните специализацию, город и базовую ставку
-                избранных фотографов. Для связи указана электронная почта.
+            <h2 class="section__title">Шорт-лист специалистов</h2>
+            <p id="shortlist-status" class="section__text" role="status"></p>
+            <p id="shortlist-empty" class="section__text">
+                Подборка пока пуста. Добавьте специалистов из каталога.
             </p>
-
-            <div class="section__table-wrap"
-                 role="region"
-                 aria-label="Сравнение фотографов"
-                 tabindex="0">
-
-                <table class="table">
-                    <caption class="table__caption">
-                        Контакты и характеристики фотографов
-                    </caption>
-
-                    <thead class="table__head">
-                        <tr class="table__row">
-                            <th class="table__cell table__cell_heading"
-                                rowspan="2"
-                                scope="col">
-                                Характеристика
-                            </th>
-                            <th class="table__cell table__cell_heading"
-                                colspan="3"
-                                scope="colgroup">
-                                Фотографы
-                            </th>
-                        </tr>
-
-                        <tr class="table__row">
-                            <th class="table__cell table__cell_heading" scope="col">
-                                Алексей Смирнов
-                            </th>
-                            <th class="table__cell table__cell_heading" scope="col">
-                                Мария Волкова
-                            </th>
-                            <th class="table__cell table__cell_heading" scope="col">
-                                Дмитрий Орлов
-                            </th>
-                        </tr>
-                    </thead>
-
-                    <tbody class="table__body">
-                        <tr class="table__row">
-                            <th class="table__cell table__cell_heading" scope="row">
-                                Специализация
-                            </th>
-                            <td class="table__cell">
-                                Портретная и семейная съёмка
-                            </td>
-                            <td class="table__cell">
-                                Свадебная и репортажная съёмка
-                            </td>
-                            <td class="table__cell">
-                                Предметная и рекламная съёмка
-                            </td>
-                        </tr>
-
-                        <tr class="table__row">
-                            <th class="table__cell table__cell_heading" scope="row">
-                                Город
-                            </th>
-                            <td class="table__cell">Уфа</td>
-                            <td class="table__cell">Уфа</td>
-                            <td class="table__cell">Уфа</td>
-                        </tr>
-
-                        <tr class="table__row">
-                            <th class="table__cell table__cell_heading" scope="row">
-                                Электронная почта
-                            </th>
-                            <td class="table__cell">
-                                <a class="section__link"
-                                   href="mailto:alexey@photobirzha.example">
-                                    alexey@photobirzha.example
-                                </a>
-                            </td>
-                            <td class="table__cell">
-                                <a class="section__link"
-                                   href="mailto:maria@photobirzha.example">
-                                    maria@photobirzha.example
-                                </a>
-                            </td>
-                            <td class="table__cell">
-                                <a class="section__link"
-                                   href="mailto:dmitry@photobirzha.example">
-                                    dmitry@photobirzha.example
-                                </a>
-                            </td>
-                        </tr>
-
-                        <tr class="table__row">
-                            <th class="table__cell table__cell_heading" scope="row">
-                                Базовая ставка, рублей в час
-                            </th>
-                            <td class="table__cell">3 000</td>
-                            <td class="table__cell">4 000</td>
-                            <td class="table__cell">2 500</td>
-                        </tr>
-                    </tbody>
-
-                    <tfoot class="table__foot">
-                        <tr class="table__row">
-                            <td class="table__cell" colspan="4">
-                                <strong class="section__accent">
-                                    Всего в избранном: 3 фотографа.
-                                    Ставки указаны за один час работы.
-                                </strong>
-                            </td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-
             <p class="section__text">
-                <a class="section__link" href="checkout.html">
-                    Перейти к заявке на съёмку
-                </a>
+                <a class="section__link" href="catalog.html">В каталог специалистов</a>
             </p>
+            <div class="cards" id="shortlist-container"></div>
         </section>
     </main>
 
